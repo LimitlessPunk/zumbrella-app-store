@@ -7,7 +7,6 @@ services:
 
   zebrad:
     image: zfnd/zebra:4.1.0@sha256:9e82f1029527183ec5bf691bd9b8eae61357bf439d33f3f7dfcb0dba5ea7d760
-    user: "1000:1000"
     restart: on-failure
     stop_grace_period: 15m30s
     volumes:
@@ -23,14 +22,13 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 60s
+      start_period: 5m
     networks:
       default:
         ipv4_address: $APP_ZCASH_NODE_ZEBRAD_IP
 
   lightwalletd:
     image: mycousiinvinny/lightwalletd:arm64@sha256:20e82e3137adc039cec72609f47f41f9960ce7f6573065538c38aad00907b356
-    user: "1000:1000"
     restart: on-failure
     depends_on:
       zebrad:
