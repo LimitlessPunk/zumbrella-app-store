@@ -4,6 +4,7 @@ name: "Zebra"
 tagline: "Run a Zcash full node powered by Zebra with light wallet server"
 version: "1.0.0"
 category: finance
+icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3000
 path: ""
 description: >-
