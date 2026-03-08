@@ -1,15 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <circle cx="128" cy="128" r="128" fill="#F4B728"/>
-  <g fill="#231F20">
-    <!-- Umbrella canopy integrated into top bar of Z -->
-    <path d="M128,58 C98,58 72,72 72,72 L184,72 C184,72 158,58 128,58Z"/>
-    <!-- Umbrella handle (vertical stroke of Z) -->
-    <rect x="121" y="72" width="14" height="111"/>
-    <!-- Handle curl at bottom -->
-    <path d="M135,183 C135,192 142,198 150,198 C158,198 158,190 158,190" fill="none" stroke="#231F20" stroke-width="12" stroke-linecap="round"/>
-    <!-- Bottom horizontal bar -->
-    <rect x="89" y="170" width="78" height="14"/>
-    <!-- Diagonal of the Z -->
-    <polygon points="89,184 89,170 184,86 184,72"/>
+  <defs>
+    <!-- Gold gradient for background -->
+    <radialGradient id="bg" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#F4B728"/>
+    </radialGradient>
+    <!-- Dark gradient for Z-umbrella -->
+    <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2D2926"/>
+      <stop offset="100%" stop-color="#1A1714"/>
+    </linearGradient>
+    <!-- Subtle shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000030"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="128" fill="url(#bg)"/>
+
+  <!-- Main Z-Umbrella mark -->
+  <g fill="url(#fg)" filter="url(#shadow)">
+    <!-- Umbrella canopy (top of Z) — elegant arc -->
+    <path d="M128,52 C96,52 68,68 64,72 Q96,60 128,60 Q160,60 192,72 C188,68 160,52 128,52Z"/>
+    <path d="M64,72 Q96,56 128,56 Q160,56 192,72 L184,78 Q160,64 128,64 Q96,64 72,78Z"/>
+
+    <!-- Top horizontal bar of Z -->
+    <rect x="72" y="78" width="112" height="12" rx="1"/>
+
+    <!-- Diagonal slash of Z -->
+    <polygon points="172,78 84,160 96,160 184,78"/>
+
+    <!-- Bottom horizontal bar of Z -->
+    <rect x="72" y="160" width="112" height="12" rx="1"/>
+
+    <!-- Umbrella handle — elegant curved stem -->
+    <rect x="122" y="90" width="12" height="82" rx="2"/>
+
+    <!-- Handle J-curve at bottom -->
+    <path d="M134,172 L134,190 C134,202 144,210 154,210 C164,210 168,202 168,196"
+          fill="none" stroke="url(#fg)" stroke-width="10" stroke-linecap="round"/>
   </g>
+
+  <!-- Highlight accent on canopy -->
+  <path d="M96,62 Q112,54 128,54 Q138,54 148,57"
+        fill="none" stroke="#FFFFFF20" stroke-width="3" stroke-linecap="round"/>
 </svg>
