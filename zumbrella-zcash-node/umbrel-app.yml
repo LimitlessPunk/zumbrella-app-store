@@ -1,0 +1,93 @@
+manifestVersion: 1.1
+id: zumbrella-zcash-node
+name: "Zcash Node"
+tagline: "Run a Zcash full node and light wallet server"
+version: "1.0.0"
+category: finance
+port: 3000
+path: ""
+description: >-
+  Run your own Zcash full node powered by Zebra (zebrad), the modern Rust-based
+  node implementation by the Zcash Foundation. Includes a light wallet server
+  (lightwalletd) so you can connect mobile wallets like Zashi, YWallet, and
+  ZingoWallet directly to your own node.
+
+
+  Features:
+
+  - Full Zcash blockchain validation and sync
+
+  - Light wallet server (lightwalletd) for mobile wallet connections
+
+  - Web dashboard with sync progress, peer info, and network stats
+
+  - Tor hidden services for private RPC, P2P, and gRPC access
+
+
+  Requirements:
+
+  - 500 GB+ SSD storage (HDD will not work)
+
+  - Initial sync takes 9 hours to 3 days depending on hardware
+
+  - 4 GB RAM minimum, 8 GB recommended
+dependencies: []
+permissions: []
+widgets:
+  - id: "stats"
+    type: "four-stats"
+    refresh: "5s"
+    endpoint: "app:3000/api/widget/stats"
+    link: ""
+    example:
+      type: "four-stats"
+      link: ""
+      items:
+        - title: "Connections"
+          text: "8"
+          subtext: "peers"
+        - title: "Block Height"
+          text: "2,450,000"
+          subtext: "blocks"
+        - title: "Mempool"
+          text: "12"
+          subtext: "txs"
+        - title: "Network"
+          text: "Mainnet"
+          subtext: ""
+  - id: "sync"
+    type: "text-with-progress"
+    refresh: "2s"
+    endpoint: "app:3000/api/widget/sync"
+    link: ""
+    example:
+      type: "text-with-progress"
+      link: ""
+      title: "Blockchain sync"
+      text: "83%"
+      progressLabel: "In progress"
+      progress: 0.83
+backupIgnore:
+  - "data/zebrad/**"
+  - "data/lightwalletd/**"
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+developer: "LimitlessPunk"
+website: "https://z.cash"
+repo: "https://github.com/LimitlessPunk/Zumbrella"
+support: "https://github.com/LimitlessPunk/Zumbrella/issues"
+submitter: "LimitlessPunk"
+submission: ""
+defaultUsername: ""
+defaultPassword: ""
+deterministicPassword: true
+torOnly: false
+installSize: 500000
+releaseNotes: >-
+  Initial release featuring:
+    - Zebra (zebrad) 4.1.0 full node
+    - lightwalletd v0.4.18 for light wallet connections
+    - Web dashboard with sync progress, peer info, and network stats
+    - Tor hidden services for RPC, P2P, and gRPC

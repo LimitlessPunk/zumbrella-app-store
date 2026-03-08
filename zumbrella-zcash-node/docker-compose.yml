@@ -1,0 +1,76 @@
+services:
+  app_proxy:
+    environment:
+      APP_HOST: ${APP_ZCASH_NODE_WEB_IP}
+      APP_PORT: 3000
+      PROXY_AUTH_ADD: "true"
+
+  zebrad:
+    image: zfnd/zebra:4.1.0@sha256:9e82f1029527183ec5bf691bd9b8eae61357bf439d33f3f7dfcb0dba5ea7d760
+    user: "1000:1000"
+    restart: on-failure
+    stop_grace_period: 15m30s
+    volumes:
+      - ${APP_DATA_DIR}/data/zebrad:/home/zebra/.cache/zebra
+    environment:
+      ZEBRA_NETWORK__NETWORK: "Mainnet"
+      ZEBRA_RPC__LISTEN_ADDR: "0.0.0.0:8232"
+      ZEBRA_RPC__ENABLE_COOKIE_AUTH: "false"
+      ZEBRA_NETWORK__LISTEN_ADDR: "0.0.0.0:8233"
+      ZEBRA_STATE__CACHE_DIR: "/home/zebra/.cache/zebra"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"jsonrpc\":\"2.0\",\"method\":\"getinfo\",\"params\":[],\"id\":1}", "http://127.0.0.1:8232"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      default:
+        ipv4_address: $APP_ZCASH_NODE_ZEBRAD_IP
+
+  lightwalletd:
+    image: electriccoinco/lightwalletd:v0.4.18@sha256:0267fabc66c9b62ee0b5143a47e8c2c0969c1b759a990cba44d00a92089be07d
+    user: "1000:1000"
+    restart: on-failure
+    depends_on:
+      zebrad:
+        condition: service_healthy
+    command:
+      - --grpc-bind-addr=0.0.0.0:9067
+      - --rpchost=${APP_ZCASH_NODE_ZEBRAD_IP}
+      - --rpcport=8232
+      - --no-tls-very-insecure
+      - --log-file=/dev/stdout
+      - --data-dir=/var/lib/lightwalletd/db
+      - --zcash-conf-path=/var/lib/lightwalletd/zcash.conf
+    volumes:
+      - ${APP_DATA_DIR}/data/lightwalletd:/var/lib/lightwalletd
+    networks:
+      default:
+        ipv4_address: $APP_ZCASH_NODE_LIGHTWALLETD_IP
+
+  web:
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.0.0@sha256:8d5ea2e6a834adad6ec0ef9ba8d45da5732af1140beb320337ab8a3e0df23d95
+    user: "1000:1000"
+    restart: on-failure
+    depends_on:
+      - zebrad
+    environment:
+      ZEBRAD_RPC_URL: "http://${APP_ZCASH_NODE_ZEBRAD_IP}:8232"
+      PORT: "3000"
+    networks:
+      default:
+        ipv4_address: $APP_ZCASH_NODE_WEB_IP
+
+  tor:
+    image: getumbrel/tor:0.4.7.8@sha256:2ace83f22501f58857fa9b403009f595137fa2e7986c4fda79d82a8119072b6a
+    user: "1000:1000"
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
+      - ${TOR_DATA_DIR}:/data
+    environment:
+      HOME: "/tmp"
+    networks:
+      default:
+        ipv4_address: $APP_ZCASH_NODE_TOR_IP

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <circle cx="128" cy="128" r="128" fill="#F4B728"/>
+  <g fill="#231F20">
+    <!-- Umbrella canopy integrated into top bar of Z -->
+    <path d="M128,58 C98,58 72,72 72,72 L184,72 C184,72 158,58 128,58Z"/>
+    <!-- Umbrella handle (vertical stroke of Z) -->
+    <rect x="121" y="72" width="14" height="111"/>
+    <!-- Handle curl at bottom -->
+    <path d="M135,183 C135,192 142,198 150,198 C158,198 158,190 158,190" fill="none" stroke="#231F20" stroke-width="12" stroke-linecap="round"/>
+    <!-- Bottom horizontal bar -->
+    <rect x="89" y="170" width="78" height="14"/>
+    <!-- Diagonal of the Z -->
+    <polygon points="89,184 89,170 184,86 184,72"/>
+  </g>
+</svg>

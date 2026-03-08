@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+APP_DATA_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/../data")"
+DESIRED_OWNER="1000:1000"
+
+# Create data directories
+mkdir -p "${APP_DATA_DIR}/zebrad"
+mkdir -p "${APP_DATA_DIR}/lightwalletd/db"
+
+# lightwalletd requires a zcash.conf file to exist (it crashes without it).
+# The file content is unused when CLI flags provide the RPC params.
+touch "${APP_DATA_DIR}/lightwalletd/zcash.conf"
+
+# Fix file ownership for containers running as uid 1000
+chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/zebrad" || true
+chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/lightwalletd" || true
+
+# Bootstrap Tor hidden services
+HIDDEN_SERVICE_FILE="${TOR_DATA_DIR}/app-zcash-node-rpc/hostname"
+
+if [[ -f "${HIDDEN_SERVICE_FILE}" ]]; then
+    exit
+fi
+
+"${UMBREL_ROOT}/scripts/app" compose "${APP_ID}" up --detach tor
+
+echo "App: ${APP_ID} - Generating Tor Hidden Services..."
+for attempt in $(seq 1 100); do
+    if [[ -f "${HIDDEN_SERVICE_FILE}" ]]; then
+        echo "Hidden services ready!"
+        break
+    fi
+    sleep 0.1
+done
