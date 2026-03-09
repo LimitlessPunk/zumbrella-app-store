@@ -1,27 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <!-- Background -->
-  <circle cx="128" cy="128" r="128" fill="#F4B728"/>
-
-  <!-- Z-Umbrella mark -->
-  <g fill="#231F20">
-    <!-- Umbrella canopy arc -->
-    <path d="M128,52 C96,52 68,68 64,72 Q96,60 128,60 Q160,60 192,72 C188,68 160,52 128,52Z"/>
-    <path d="M64,72 Q96,56 128,56 Q160,56 192,72 L184,78 Q160,64 128,64 Q96,64 72,78Z"/>
-
-    <!-- Top bar of Z -->
-    <rect x="72" y="78" width="112" height="12" rx="1"/>
-
-    <!-- Diagonal of Z -->
-    <polygon points="172,78 84,160 96,160 184,78"/>
-
-    <!-- Bottom bar of Z -->
-    <rect x="72" y="160" width="112" height="12" rx="1"/>
-
-    <!-- Umbrella handle stem -->
-    <rect x="122" y="90" width="12" height="82" rx="2"/>
-  </g>
-
-  <!-- Handle J-curve -->
-  <path d="M134,172 L134,190 C134,202 144,210 154,210 C164,210 168,202 168,196"
-        fill="none" stroke="#231F20" stroke-width="10" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <path d="m270,540c0-148.9,121.1-270,270-270s270,121.1,270,270-121.1,270-270,270-270-121.1-270-270Zm366.31-125.3v41.09l-114.28,155h114.28v54.5h-73.67v45.16h-45.28v-45.16h-73.67v-41.09l114.16-155h-114.16v-54.5h73.67v-45.28h45.28v45.28h73.67Z" fill="#f4b728" fill-rule="evenodd"/>
 </svg>
