@@ -1,11 +1,10 @@
 manifestVersion: 1.1
-id: zumbrella-zcash-node
-name: "Zebra"
-tagline: "Run a Zcash full node powered by Zebra with light wallet server"
+id: zcash-node
+name: "Zcash Node"
+tagline: "Run a Zcash full node and light wallet server"
 version: "1.0.0"
 category: finance
-icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
-port: 3000
+port: 3700
 path: ""
 description: >-
   Run your own Zcash full node powered by Zebra (zebrad), the modern Rust-based
@@ -38,7 +37,7 @@ widgets:
   - id: "stats"
     type: "four-stats"
     refresh: "5s"
-    endpoint: "app:3000/api/widget/stats"
+    endpoint: "app:3700/api/widget/stats"
     link: ""
     example:
       type: "four-stats"
@@ -59,7 +58,7 @@ widgets:
   - id: "sync"
     type: "text-with-progress"
     refresh: "2s"
-    endpoint: "app:3000/api/widget/sync"
+    endpoint: "app:3700/api/widget/sync"
     link: ""
     example:
       type: "text-with-progress"
@@ -71,6 +70,10 @@ widgets:
 backupIgnore:
   - "data/zebrad/**"
   - "data/lightwalletd/**"
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
 developer: "LimitlessPunk"
 website: "https://z.cash"
 repo: "https://github.com/LimitlessPunk/Zumbrella"
