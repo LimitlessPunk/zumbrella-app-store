@@ -72,9 +72,9 @@ backupIgnore:
   - "data/zebrad/**"
   - "data/lightwalletd/**"
 gallery:
-  - 1.png
-  - 2.png
-  - 3.png
+  - https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/gallery/1.png
+  - https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/gallery/2.png
+  - https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/gallery/3.png
 developer: "LimitlessPunk"
 website: "https://z.cash"
 repo: "https://github.com/LimitlessPunk/Zumbrella"
