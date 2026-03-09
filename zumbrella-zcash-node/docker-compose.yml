@@ -49,13 +49,16 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.2.0@sha256:dde14caae0ea330244dd1353cef0fcbbde17a34b6157bd96975c427112043cb3
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.3.0@sha256:6e68ab5f664cddc88c69f76f473abaabc4fcee804240b71d4c9920c28ec8ccc9
     user: "1000:1000"
     restart: on-failure
     depends_on:
       - zebrad
     environment:
       ZEBRAD_RPC_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}:8232"
+      LIGHTWALLETD_ONION: "${APP_ZUMBRELLA_ZCASH_NODE_GRPC_HIDDEN_SERVICE}"
+      LIGHTWALLETD_HOST: "${APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP}"
+      LIGHTWALLETD_PORT: "9067"
       PORT: "3700"
     networks:
       default:
