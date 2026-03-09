@@ -1,5 +1,5 @@
 manifestVersion: 1.1
-id: zcash-node
+id: zumbrella-zcash-node
 name: "Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
 version: "1.0.0"

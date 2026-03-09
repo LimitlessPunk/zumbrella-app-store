@@ -1,7 +1,7 @@
 services:
   app_proxy:
     environment:
-      APP_HOST: ${APP_ZCASH_NODE_WEB_IP}
+      APP_HOST: ${APP_ZUMBRELLA_ZCASH_NODE_WEB_IP}
       APP_PORT: 3700
       PROXY_AUTH_ADD: "true"
 
@@ -26,7 +26,7 @@ services:
       start_period: 60s
     networks:
       default:
-        ipv4_address: $APP_ZCASH_NODE_ZEBRAD_IP
+        ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP
 
   lightwalletd:
     image: electriccoinco/lightwalletd:v0.4.18@sha256:0267fabc66c9b62ee0b5143a47e8c2c0969c1b759a990cba44d00a92089be07d
@@ -37,7 +37,7 @@ services:
         condition: service_healthy
     command:
       - --grpc-bind-addr=0.0.0.0:9067
-      - --rpchost=${APP_ZCASH_NODE_ZEBRAD_IP}
+      - --rpchost=${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}
       - --rpcport=8232
       - --no-tls-very-insecure
       - --log-file=/dev/stdout
@@ -47,7 +47,7 @@ services:
       - ${APP_DATA_DIR}/data/lightwalletd:/var/lib/lightwalletd
     networks:
       default:
-        ipv4_address: $APP_ZCASH_NODE_LIGHTWALLETD_IP
+        ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
     image: ghcr.io/limitlesspunk/zumbrella-web:v1.1.0@sha256:9f0aa7fc9acd816380dec234f7aad9df495372fcd3e4d0349a278200c470a6cd
@@ -56,11 +56,11 @@ services:
     depends_on:
       - zebrad
     environment:
-      ZEBRAD_RPC_URL: "http://${APP_ZCASH_NODE_ZEBRAD_IP}:8232"
+      ZEBRAD_RPC_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}:8232"
       PORT: "3700"
     networks:
       default:
-        ipv4_address: $APP_ZCASH_NODE_WEB_IP
+        ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_WEB_IP
 
   tor:
     image: getumbrel/tor:0.4.7.8@sha256:2ace83f22501f58857fa9b403009f595137fa2e7986c4fda79d82a8119072b6a
@@ -73,4 +73,4 @@ services:
       HOME: "/tmp"
     networks:
       default:
-        ipv4_address: $APP_ZCASH_NODE_TOR_IP
+        ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_TOR_IP

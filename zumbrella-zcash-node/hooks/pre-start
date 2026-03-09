@@ -18,7 +18,7 @@ chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/zebrad" || true
 chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/lightwalletd" || true
 
 # Bootstrap Tor hidden services
-HIDDEN_SERVICE_FILE="${TOR_DATA_DIR}/app-zcash-node-rpc/hostname"
+HIDDEN_SERVICE_FILE="${TOR_DATA_DIR}/app-zumbrella-zcash-node-rpc/hostname"
 
 if [[ -f "${HIDDEN_SERVICE_FILE}" ]]; then
     exit

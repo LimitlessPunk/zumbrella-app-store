@@ -1,13 +1,13 @@
 # Zcash Node Tor Hidden Services
 
 # RPC (JSON-RPC)
-HiddenServiceDir /data/app-zcash-node-rpc
+HiddenServiceDir /data/app-zumbrella-zcash-node-rpc
 HiddenServicePort 8232 10.21.22.20:8232
 
 # P2P (Zcash network)
-HiddenServiceDir /data/app-zcash-node-p2p
+HiddenServiceDir /data/app-zumbrella-zcash-node-p2p
 HiddenServicePort 8233 10.21.22.20:8233
 
 # gRPC (lightwalletd)
-HiddenServiceDir /data/app-zcash-node-grpc
+HiddenServiceDir /data/app-zumbrella-zcash-node-grpc
 HiddenServicePort 9067 10.21.22.21:9067
