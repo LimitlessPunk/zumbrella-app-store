@@ -9,9 +9,9 @@ DESIRED_OWNER="1000:1000"
 mkdir -p "${APP_DATA_DIR}/zebrad"
 mkdir -p "${APP_DATA_DIR}/lightwalletd/db"
 
-# lightwalletd requires a zcash.conf file to exist (it crashes without it).
-# The file content is unused when CLI flags provide the RPC params.
-touch "${APP_DATA_DIR}/lightwalletd/zcash.conf"
+# lightwalletd requires a zcash.conf with rpcpassword= set (even when zebrad
+# has no auth). Without it, lightwalletd refuses to start.
+echo "rpcpassword=" > "${APP_DATA_DIR}/lightwalletd/zcash.conf"
 
 # Fix file ownership for containers running as uid 1000
 chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/zebrad" || true
