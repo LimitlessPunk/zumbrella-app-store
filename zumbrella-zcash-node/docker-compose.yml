@@ -1,3 +1,11 @@
+volumes:
+  logs:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+      o: size=50m
+
 services:
   app_proxy:
     environment:
@@ -9,15 +17,19 @@ services:
     image: zfnd/zebra:4.1.0@sha256:9e82f1029527183ec5bf691bd9b8eae61357bf439d33f3f7dfcb0dba5ea7d760
     restart: on-failure
     stop_grace_period: 15m30s
+    command: ["sh", "-c", "exec zebrad start 2>&1 | tee /shared-logs/zebrad.log"]
     volumes:
       - ${APP_DATA_DIR}/data/zebrad:/home/zebra/.cache/zebra
+      - logs:/shared-logs
     environment:
       ZEBRA_NETWORK__NETWORK: "Mainnet"
       ZEBRA_RPC__LISTEN_ADDR: "0.0.0.0:8232"
       ZEBRA_RPC__ENABLE_COOKIE_AUTH: "false"
-      ZEBRA_NETWORK__LISTEN_ADDR: "0.0.0.0:8233"
+      ZEBRA_NETWORK__LISTEN_ADDR: "0.0.0.0:${APP_ZUMBRELLA_ZCASH_NODE_P2P_PORT:-8233}"
       ZEBRA_STATE__CACHE_DIR: "/home/zebra/.cache/zebra"
       ZEBRA_MINING__MINER_ADDRESS: "${APP_ZUMBRELLA_ZCASH_NODE_MINER_ADDRESS:-t3dvVE3SQEi7kqNzwrfNePxZ1d4hUyztBA1}"
+      ZEBRA_NETWORK__PEERSET_INITIAL_TARGET_SIZE: "${APP_ZUMBRELLA_ZCASH_NODE_MAX_CONNECTIONS:-25}"
+      RUST_LOG: "${APP_ZUMBRELLA_ZCASH_NODE_LOG_LEVEL:-info}"
     healthcheck:
       test: ["CMD", "curl", "-sf", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"jsonrpc\":\"2.0\",\"method\":\"getinfo\",\"params\":[],\"id\":1}", "http://127.0.0.1:8232"]
       interval: 30s
@@ -40,17 +52,18 @@ services:
       - --rpchost=${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}
       - --rpcport=8232
       - --no-tls-very-insecure
-      - --log-file=/dev/stdout
+      - --log-file=/shared-logs/lightwalletd.log
       - --data-dir=/var/lib/lightwalletd/db
       - --zcash-conf-path=/var/lib/lightwalletd/zcash.conf
     volumes:
       - ${APP_DATA_DIR}/data/lightwalletd:/var/lib/lightwalletd
+      - logs:/shared-logs
     networks:
       default:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.4.0@sha256:ee901ffacb3920096195051efea8b0c3965a0cafb7fce7a6351d089aa96e22d4
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.5.0@sha256:b3a5f154f19ca0c9d610bb9da3096a334f21f19edc26a3534e9ea3a6392bc137
     user: "1000:1000"
     restart: on-failure
     depends_on:
@@ -61,6 +74,10 @@ services:
       LIGHTWALLETD_HOST: "${APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP}"
       LIGHTWALLETD_PORT: "9067"
       PORT: "3700"
+      SETTINGS_FILE: "/data/settings/settings.json"
+    volumes:
+      - logs:/shared-logs:ro
+      - ${APP_DATA_DIR}/data/settings:/data/settings
     networks:
       default:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_WEB_IP

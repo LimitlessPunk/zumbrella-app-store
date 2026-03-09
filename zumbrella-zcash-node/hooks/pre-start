@@ -8,6 +8,7 @@ DESIRED_OWNER="1000:1000"
 # Create data directories
 mkdir -p "${APP_DATA_DIR}/zebrad"
 mkdir -p "${APP_DATA_DIR}/lightwalletd/db"
+mkdir -p "${APP_DATA_DIR}/settings"
 
 # lightwalletd reads zcash.conf for RPC connection details. It requires a
 # non-empty rpcpassword (even though zebrad has cookie auth disabled) and
@@ -18,9 +19,26 @@ rpcbind=${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}
 rpcport=8232
 CONF
 
+# Read user settings and export as env vars
+SETTINGS_FILE="${APP_DATA_DIR}/settings/settings.json"
+if [[ -f "${SETTINGS_FILE}" ]]; then
+  MINER_ADDR=$(jq -r '.minerAddress // empty' "${SETTINGS_FILE}" 2>/dev/null)
+  LOG_LEVEL=$(jq -r '.logLevel // empty' "${SETTINGS_FILE}" 2>/dev/null)
+  P2P_PORT=$(jq -r '.p2pPort // empty' "${SETTINGS_FILE}" 2>/dev/null)
+  MAX_CONN=$(jq -r '.maxConnections // empty' "${SETTINGS_FILE}" 2>/dev/null)
+  CACHE_GB=$(jq -r '.cacheSizeGb // empty' "${SETTINGS_FILE}" 2>/dev/null)
+
+  [[ -n "${MINER_ADDR}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_MINER_ADDRESS="${MINER_ADDR}"
+  [[ -n "${LOG_LEVEL}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_LOG_LEVEL="${LOG_LEVEL}"
+  [[ -n "${P2P_PORT}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_P2P_PORT="${P2P_PORT}"
+  [[ -n "${MAX_CONN}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_MAX_CONNECTIONS="${MAX_CONN}"
+  [[ -n "${CACHE_GB}" && "${CACHE_GB}" != "0" ]] && export APP_ZUMBRELLA_ZCASH_NODE_CACHE_SIZE="${CACHE_GB}"
+fi
+
 # Fix file ownership for containers running as uid 1000
 chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/zebrad" || true
 chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/lightwalletd" || true
+chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/settings" || true
 
 # Bootstrap Tor hidden services
 HIDDEN_SERVICE_FILE="${TOR_DATA_DIR}/app-zumbrella-zcash-node-rpc/hostname"
