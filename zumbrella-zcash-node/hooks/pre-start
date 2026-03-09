@@ -9,9 +9,14 @@ DESIRED_OWNER="1000:1000"
 mkdir -p "${APP_DATA_DIR}/zebrad"
 mkdir -p "${APP_DATA_DIR}/lightwalletd/db"
 
-# lightwalletd requires a zcash.conf with rpcpassword= set (even when zebrad
-# has no auth). Without it, lightwalletd refuses to start.
-echo "rpcpassword=noauth" > "${APP_DATA_DIR}/lightwalletd/zcash.conf"
+# lightwalletd reads zcash.conf for RPC connection details. It requires a
+# non-empty rpcpassword (even though zebrad has cookie auth disabled) and
+# uses rpcbind to find the node (ignoring the --rpchost CLI flag).
+cat > "${APP_DATA_DIR}/lightwalletd/zcash.conf" <<CONF
+rpcpassword=noauth
+rpcbind=${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}
+rpcport=8232
+CONF
 
 # Fix file ownership for containers running as uid 1000
 chown -R "${DESIRED_OWNER}" "${APP_DATA_DIR}/zebrad" || true
