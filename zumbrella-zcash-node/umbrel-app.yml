@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.1.0"
+version: "1.2.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -68,6 +68,27 @@ widgets:
       text: "83%"
       progressLabel: "In progress"
       progress: 0.83
+  - id: "mining"
+    type: "four-stats"
+    refresh: "5s"
+    endpoint: "app:3700/api/widget/mining"
+    link: ""
+    example:
+      type: "four-stats"
+      link: ""
+      items:
+        - title: "Network Hashrate"
+          text: "8.45 GSol/s"
+          subtext: ""
+        - title: "Difficulty"
+          text: "130.5M"
+          subtext: ""
+        - title: "Block Reward"
+          text: "3.1250 ZEC"
+          subtext: "per block"
+        - title: "Block Height"
+          text: "2450000"
+          subtext: "blocks"
 backupIgnore:
   - "data/zebrad/**"
   - "data/lightwalletd/**"
@@ -87,9 +108,9 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Connect Wallet feature:
-    - New "Connect Wallet" tab with connection details for light wallets
-    - LAN and Tor (.onion) endpoints for lightwalletd gRPC
-    - Step-by-step instructions for Zashi, YWallet, and ZingoWallet
-    - Copy-to-clipboard for connection strings
-    - lightwalletd health indicator
+  Mining Stats Dashboard:
+    - New "Mining" tab with network hashrate, difficulty, and block reward
+    - Block subsidy breakdown showing miner reward and dev fund status
+    - Mining widget for Umbrel home screen
+    - Enables zebrad mining RPCs (getmininginfo, getblocksubsidy, getnetworksolps)
+    - Solo mining teaser for upcoming Phase 2 stratum server

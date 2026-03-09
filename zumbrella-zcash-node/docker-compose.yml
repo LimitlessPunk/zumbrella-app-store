@@ -17,6 +17,7 @@ services:
       ZEBRA_RPC__ENABLE_COOKIE_AUTH: "false"
       ZEBRA_NETWORK__LISTEN_ADDR: "0.0.0.0:8233"
       ZEBRA_STATE__CACHE_DIR: "/home/zebra/.cache/zebra"
+      ZEBRA_MINING__MINER_ADDRESS: "${APP_ZUMBRELLA_ZCASH_NODE_MINER_ADDRESS:-t3dvVE3SQEi7kqNzwrfNePxZ1d4hUyztBA1}"
     healthcheck:
       test: ["CMD", "curl", "-sf", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"jsonrpc\":\"2.0\",\"method\":\"getinfo\",\"params\":[],\"id\":1}", "http://127.0.0.1:8232"]
       interval: 30s
@@ -49,7 +50,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.3.0@sha256:6e68ab5f664cddc88c69f76f473abaabc4fcee804240b71d4c9920c28ec8ccc9
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.4.0@sha256:ee901ffacb3920096195051efea8b0c3965a0cafb7fce7a6351d089aa96e22d4
     user: "1000:1000"
     restart: on-failure
     depends_on:
