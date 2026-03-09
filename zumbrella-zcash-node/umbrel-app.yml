@@ -1,6 +1,6 @@
 manifestVersion: 1.1
 id: zumbrella-zcash-node
-name: "Zcash Node"
+name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
 version: "1.0.0"
 category: finance
@@ -71,7 +71,10 @@ widgets:
 backupIgnore:
   - "data/zebrad/**"
   - "data/lightwalletd/**"
-gallery: []
+gallery:
+  - 1.png
+  - 2.png
+  - 3.png
 developer: "LimitlessPunk"
 website: "https://z.cash"
 repo: "https://github.com/LimitlessPunk/Zumbrella"
