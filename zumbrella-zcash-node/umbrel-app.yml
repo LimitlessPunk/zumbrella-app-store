@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.5.1"
+version: "1.5.2"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,10 +108,11 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  World map fix and responsive layout:
-    - World map now shows real continent outlines (Natural Earth data) instead of placeholder shapes
-    - Dashboard widened from 672px to 896px max for better use of screen space
-    - All pages are now mobile-responsive — data grids collapse to single column on small screens
-    - Peer table hides less-critical columns (Client, Ping) on mobile
-    - Navigation tabs scroll horizontally on narrow screens
-    - Settings grid adapts to single column on mobile
+  Dashboard data bug fixes:
+    - Fix block reward showing 0.0000 ZEC instead of 2.5 ZEC (zebrad returns ZEC, not zatoshis)
+    - Fix mining widget showing wrong block reward
+    - Fix dashboard freezing on stale data when zebrad disconnects
+    - Mining page now shows "At sync height" when node is still syncing
+    - Sparklines maintain smooth lines across brief disconnects
+    - Guard against NaN/Infinity in number formatters
+    - Fix block pulse timeout leak on unmount
