@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.2.0"
+version: "1.3.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,9 +108,9 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Mining Stats Dashboard:
-    - New "Mining" tab with network hashrate, difficulty, and block reward
-    - Block subsidy breakdown showing miner reward and dev fund status
-    - Mining widget for Umbrel home screen
-    - Enables zebrad mining RPCs (getmininginfo, getblocksubsidy, getnetworksolps)
-    - Solo mining teaser for upcoming Phase 2 stratum server
+  Mining Page HUD Redesign:
+    - New HUD panel design with corner brackets, scan lines, and data grid
+    - Segmented arc gauge for network hashrate with green/yellow/red segments
+    - LED strip indicator for hashrate capacity
+    - Block subsidy waterfall chart replacing donut chart
+    - Improved reduced-motion accessibility support
