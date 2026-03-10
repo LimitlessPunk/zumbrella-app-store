@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.3.0"
+version: "1.4.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,9 +108,9 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Mining Page HUD Redesign:
-    - New HUD panel design with corner brackets, scan lines, and data grid
-    - Segmented arc gauge for network hashrate with green/yellow/red segments
-    - LED strip indicator for hashrate capacity
-    - Block subsidy waterfall chart replacing donut chart
-    - Improved reduced-motion accessibility support
+  Full HUD restyle — unified retro-futuristic design across all pages:
+    - Replaced glass-card aesthetic with HUD panels, corner brackets, scan lines
+    - Gold accent borders, sharp 4px corners, uppercase data labels
+    - LED strip sync progress, data-grid stat cells with sparklines
+    - HUD-styled forms, buttons, and alerts on Settings page
+    - Consistent design language matching the Mining dashboard
