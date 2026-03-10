@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.5.0"
+version: "1.5.1"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,9 +108,10 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Bug fixes and UX improvements:
-    - Fixed console log output showing raw HTML tags (broken syntax highlighting)
-    - Improved text contrast across all pages for readability on dark backgrounds
-    - Replaced pixel art zebra with a smooth blockchain sync animation
-    - Replaced peer orbit/radar with a world map showing peer locations
-    - Fixed intermittent "Offline" status during heavy sync — now resilient to RPC timeouts
+  World map fix and responsive layout:
+    - World map now shows real continent outlines (Natural Earth data) instead of placeholder shapes
+    - Dashboard widened from 672px to 896px max for better use of screen space
+    - All pages are now mobile-responsive — data grids collapse to single column on small screens
+    - Peer table hides less-critical columns (Client, Ping) on mobile
+    - Navigation tabs scroll horizontally on narrow screens
+    - Settings grid adapts to single column on mobile
