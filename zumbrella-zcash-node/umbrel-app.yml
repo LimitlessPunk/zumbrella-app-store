@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.5.3"
+version: "1.5.4"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,9 +108,9 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Dashboard sync display fixes and footer version info:
-    - Block Height now shows "current / estimated" format during sync
-    - Added prominent Sync Progress percentage (2 decimal places) to data grid
-    - Removed "Estimated" field (folded into Block Height display)
-    - Removed spinning sync animation icon (LED strip conveys status)
-    - Footer now shows Zumbrella app version and Zebra node version
+  Dashboard performance and loading improvements:
+    - Instant number display on first load (no more counting up from zero)
+    - Skeleton loading state instead of blank spinner
+    - Memoized sparkline and peer map calculations for smoother 5s refreshes
+    - Peer map country clustering with sidebar and heat markers
+    - CSS-based peer dot shadows (fewer re-renders)
