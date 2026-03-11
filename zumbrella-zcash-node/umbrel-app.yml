@@ -1,17 +1,17 @@
 manifestVersion: 1.1
 id: zumbrella-zcash-node
-name: "Zebra - Zcash Node"
-tagline: "Run a Zcash full node and light wallet server"
-version: "1.6.0"
+name: "Zolo"
+tagline: "Self-host your privacy"
+version: "1.7.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
 path: ""
 description: >-
-  Run your own Zcash full node powered by Zebra (zebrad), the modern Rust-based
-  node implementation by the Zcash Foundation. Includes a light wallet server
-  (lightwalletd) so you can connect mobile wallets like Zashi, YWallet, and
-  ZingoWallet directly to your own node.
+  Zolo is a self-hosted Zcash full node powered by Zebra (zebrad), the modern
+  Rust-based node implementation by the Zcash Foundation. Includes a light wallet
+  server (lightwalletd) so you can connect mobile wallets like Zashi, YWallet,
+  and ZingoWallet directly to your own node.
 
 
   Features:
@@ -108,16 +108,7 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Full dashboard UX/UI overhaul — premium feel with pixel-perfect polish:
-    - Full-width layout (1400px max) replacing cramped 896px constraint
-    - JetBrains Mono + Inter typography for distinctive retro-futuristic look
-    - 4-column data grids on desktop, improved spacing and density
-    - Bigger sync percentage with glow effect, enlarged gauge and LED strips
-    - Peer world map: wider layout with scan line animation, mobile accordion sidebar
-    - Polished navigation: larger tabs, active highlights, hover states
-    - Connect page: color-coded LAN/Tor cards with icons
-    - Settings: section descriptions, save spinner/checkmark, auto-dismiss alerts
-    - Consistent HUD-themed skeleton loading on all pages (no more spinners)
-    - HUD-themed error states with reconnection indicator
-    - Staggered panel entrance animations, hover effects, button press feedback
-    - Consolidated color system with CSS custom properties
+  Rebrand to Zolo — "Self-host your privacy":
+    - App renamed from "Zebra - Zcash Node" to "Zolo" across header, footer, and metadata
+    - New Services panel on dashboard showing live status of all 4 containers (zebrad, lightwalletd, tor, web) with health LEDs and version info
+    - New /api/services endpoint for container health checks

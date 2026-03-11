@@ -66,7 +66,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.9.0@sha256:9207d32de7b93856446722c78da087a70b18f1ff2682d72d137ce1dc747088c9
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.10.0@sha256:49b4459095510bd327987d8fe1aa871a2edf9a3efa64dec06984916bd9f77899
     user: "1000:1000"
     restart: on-failure
     depends_on:
@@ -76,6 +76,7 @@ services:
       LIGHTWALLETD_ONION: "${APP_ZUMBRELLA_ZCASH_NODE_GRPC_HIDDEN_SERVICE}"
       LIGHTWALLETD_HOST: "${APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP}"
       LIGHTWALLETD_PORT: "9067"
+      TOR_HOST: "${APP_ZUMBRELLA_ZCASH_NODE_TOR_IP}"
       PORT: "3700"
       SETTINGS_FILE: "/data/settings/settings.json"
     volumes:
