@@ -63,7 +63,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.8.5@sha256:8eb1edddba6f9ef8b8006d5ce74e7a9d1bc3fe720eae4bd0cb8ac3c846f74844
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.8.6@sha256:fd144305979872a66aa6ae052fe6ba8edc7fab903b79fb7fd9325bb2ea669dec
     user: "1000:1000"
     restart: on-failure
     depends_on:

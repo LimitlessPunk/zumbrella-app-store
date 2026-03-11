@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.5.5"
+version: "1.5.6"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,12 +108,8 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Full dashboard rebuild with country-clustered peer map, performance
-  optimizations, and accumulated fixes from v1.2–v1.5.4:
-    - Country-clustered peer world map with sidebar and heat markers
-    - Instant number display on load (no counting from zero)
-    - Skeleton loading state instead of blank spinner
-    - Memoized sparkline and peer map calculations
-    - HUD retro-futuristic design, mining page, connect page, settings page
-    - Footer with app and Zebra version info
-    - Sync progress improvements and resilient offline detection
+  UI cleanup and sync panel improvements:
+    - Removed animated scan line effect from all HUD panels
+    - Sync percentage now displayed prominently above progress bar
+    - Added sync updates log showing last 5 block height changes with relative timestamps
+    - Removed redundant Sync Progress data cell
