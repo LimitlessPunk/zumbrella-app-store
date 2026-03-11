@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zebra - Zcash Node"
 tagline: "Run a Zcash full node and light wallet server"
-version: "1.5.7"
+version: "1.6.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,8 +108,16 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Optimize zebrad for Raspberry Pi 5 sync performance:
-    - Reduced sync lookahead (256) and concurrent block requests (8) to prevent RAM/CPU overload during Sapling verification
-    - Limited RPC threads to 1 during sync to free CPU for block verification
-    - Relaxed health check timing to prevent unnecessary restarts during heavy verification
-    - Added configurable Sync Concurrency setting in the web UI (2-50, default 8)
+  Full dashboard UX/UI overhaul — premium feel with pixel-perfect polish:
+    - Full-width layout (1400px max) replacing cramped 896px constraint
+    - JetBrains Mono + Inter typography for distinctive retro-futuristic look
+    - 4-column data grids on desktop, improved spacing and density
+    - Bigger sync percentage with glow effect, enlarged gauge and LED strips
+    - Peer world map: wider layout with scan line animation, mobile accordion sidebar
+    - Polished navigation: larger tabs, active highlights, hover states
+    - Connect page: color-coded LAN/Tor cards with icons
+    - Settings: section descriptions, save spinner/checkmark, auto-dismiss alerts
+    - Consistent HUD-themed skeleton loading on all pages (no more spinners)
+    - HUD-themed error states with reconnection indicator
+    - Staggered panel entrance animations, hover effects, button press feedback
+    - Consolidated color system with CSS custom properties
