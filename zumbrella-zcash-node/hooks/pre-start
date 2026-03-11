@@ -33,6 +33,9 @@ if [[ -f "${SETTINGS_FILE}" ]]; then
   [[ -n "${P2P_PORT}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_P2P_PORT="${P2P_PORT}"
   [[ -n "${MAX_CONN}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_MAX_CONNECTIONS="${MAX_CONN}"
   [[ -n "${CACHE_GB}" && "${CACHE_GB}" != "0" ]] && export APP_ZUMBRELLA_ZCASH_NODE_CACHE_SIZE="${CACHE_GB}"
+
+  SYNC_CONC=$(jq -r '.syncConcurrency // empty' "${SETTINGS_FILE}" 2>/dev/null)
+  [[ -n "${SYNC_CONC}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_SYNC_CONCURRENCY="${SYNC_CONC}"
 fi
 
 # Fix file ownership for containers running as uid 1000

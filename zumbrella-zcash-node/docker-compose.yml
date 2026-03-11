@@ -29,13 +29,16 @@ services:
       ZEBRA_STATE__CACHE_DIR: "/home/zebra/.cache/zebra"
       ZEBRA_MINING__MINER_ADDRESS: "${APP_ZUMBRELLA_ZCASH_NODE_MINER_ADDRESS:-t3dvVE3SQEi7kqNzwrfNePxZ1d4hUyztBA1}"
       ZEBRA_NETWORK__PEERSET_INITIAL_TARGET_SIZE: "${APP_ZUMBRELLA_ZCASH_NODE_MAX_CONNECTIONS:-25}"
+      ZEBRA_SYNC__LOOKAHEAD_LIMIT: "256"
+      ZEBRA_SYNC__MAX_CONCURRENT_BLOCK_REQUESTS: "${APP_ZUMBRELLA_ZCASH_NODE_SYNC_CONCURRENCY:-8}"
+      ZEBRA_RPC__PARALLEL_CPU_THREADS: "1"
       RUST_LOG: "${APP_ZUMBRELLA_ZCASH_NODE_LOG_LEVEL:-info}"
     healthcheck:
       test: ["CMD", "curl", "-sf", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"jsonrpc\":\"2.0\",\"method\":\"getinfo\",\"params\":[],\"id\":1}", "http://127.0.0.1:8232"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 5m
+      interval: 60s
+      timeout: 15s
+      retries: 5
+      start_period: 10m
     networks:
       default:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP
@@ -63,7 +66,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.8.6@sha256:fd144305979872a66aa6ae052fe6ba8edc7fab903b79fb7fd9325bb2ea669dec
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.8.7@sha256:b9b43c626eec42c7a16cc61587d32c845b40a5ca762756e09a96d30e256bc1fd
     user: "1000:1000"
     restart: on-failure
     depends_on:
