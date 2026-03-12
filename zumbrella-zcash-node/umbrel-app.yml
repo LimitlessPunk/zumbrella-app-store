@@ -108,9 +108,12 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Fix Browser Wallet:
-    - Replaced non-functional WebZjs WASM dependency with transparent-address-only wallet
-    - Wallet now derives t1 addresses client-side and fetches balance/transactions from zebrad
-    - Create, unlock, lock, and receive flows all work without errors
-    - Send tab replaced with informational panel linking to Connect page for full wallet apps
-    - Removed WASM webpack config and unused gRPC proxy route
+  Full Wallet: Unified Addresses + Multiple Addresses + Transparent Send:
+    - Unified address support via Rust wallet sidecar (zcash_keys crate) — derive t1, zs1, and u1 addresses from your seed
+    - Multiple address generation — create and manage multiple addresses with persistent indices
+    - Address type selector — switch between Transparent, Sapling, and Unified addresses in the Receive tab
+    - Transparent send — build, sign, and broadcast transparent transactions directly from the browser
+    - ZIP 225 v5 transaction builder with ZIP 244 sighash (BLAKE2b + secp256k1 ECDSA)
+    - UTXO selection, change outputs, and fee calculation (0.00001 ZEC standard fee)
+    - Multi-address balance aggregation and transaction merging
+    - Graceful fallback to transparent-only mode when sidecar is unavailable
