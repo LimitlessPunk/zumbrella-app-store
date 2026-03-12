@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.15.0"
+version: "1.16.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,8 +108,6 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Clean HUD Fonts + Fast Shutdown:
-    - Replaced pixel font (Press Start 2P) with Inter (body) + JetBrains Mono (labels) for much better readability
-    - ZOLO logo retains its signature pixel style
-    - Fixed zebrad shutdown signal — updates now complete in ~60s instead of hanging for 15 minutes
-    - Added GRPC proxy IP export and WebAssembly webpack support for wallet features
+  Seed Phrase Layout:
+    - Seed word grids now flow top-to-bottom in columns (1-6, 7-12, 13-18, 19-24) matching standard backup card format
+    - Applies to both wallet creation and seed reveal in settings
