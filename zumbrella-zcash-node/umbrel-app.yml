@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.10.0"
+version: "1.11.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,7 +108,10 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  New shield logo rebrand:
-    - New gold Zcash shield icon replaces old text logo in Umbrel app store
-    - Browser tab favicon and apple-touch-icon added to web dashboard
-    - Icon shown in browser tabs, bookmarks, and mobile home screen shortcuts
+  Retro Pixel Theme + 40 Color Schemes:
+    - New SNES-inspired retro pixel aesthetic with Press Start 2P font
+    - 40 switchable color schemes across 5 categories (Retro, Cyberpunk, Nature, Minimal, Crypto)
+    - Theme picker in Settings with instant CSS variable swapping, persisted in localStorage
+    - Scanline overlay, pixel cursor blink, beveled panel borders, pixel box-shadows
+    - All hardcoded colors replaced with CSS custom properties for full theme consistency
+    - Service status uses star icons (★/☆) instead of dots
