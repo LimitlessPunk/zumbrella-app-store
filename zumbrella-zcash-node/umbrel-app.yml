@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.18.0"
+version: "1.19.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,7 +108,8 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Shield Logo: Replace blinking cursor with animated Zcash shield:
-    - New gold shield-shaped "Z" logo element in the header after ZOLO wordmark
-    - CSS clip-path shield shape with smooth glow pulse animation
-    - Respects prefers-reduced-motion accessibility setting
+  Fix Clipboard Copy: Wallet address copy buttons now work correctly:
+    - Each address copy button tracks its own state (no more wrong-button feedback)
+    - Checkmark icon + "Copied" text replaces plain "OK" feedback
+    - Styled copy buttons match the rest of the UI (hud-btn)
+    - Async clipboard with error handling on all copy actions
