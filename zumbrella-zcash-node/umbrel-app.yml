@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.17.0"
+version: "1.18.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,12 +108,7 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Full Wallet: Unified Addresses + Multiple Addresses + Transparent Send:
-    - Unified address support via Rust wallet sidecar (zcash_keys crate) — derive t1, zs1, and u1 addresses from your seed
-    - Multiple address generation — create and manage multiple addresses with persistent indices
-    - Address type selector — switch between Transparent, Sapling, and Unified addresses in the Receive tab
-    - Transparent send — build, sign, and broadcast transparent transactions directly from the browser
-    - ZIP 225 v5 transaction builder with ZIP 244 sighash (BLAKE2b + secp256k1 ECDSA)
-    - UTXO selection, change outputs, and fee calculation (0.00001 ZEC standard fee)
-    - Multi-address balance aggregation and transaction merging
-    - Graceful fallback to transparent-only mode when sidecar is unavailable
+  Shield Logo: Replace blinking cursor with animated Zcash shield:
+    - New gold shield-shaped "Z" logo element in the header after ZOLO wordmark
+    - CSS clip-path shield shape with smooth glow pulse animation
+    - Respects prefers-reduced-motion accessibility setting
