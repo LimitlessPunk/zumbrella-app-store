@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.7.0"
+version: "1.8.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.svg
 port: 3700
@@ -108,7 +108,8 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Rebrand to Zolo — "Self-host your privacy":
-    - App renamed from "Zebra - Zcash Node" to "Zolo" across header, footer, and metadata
-    - New Services panel on dashboard showing live status of all 4 containers (zebrad, lightwalletd, tor, web) with health LEDs and version info
-    - New /api/services endpoint for container health checks
+  Zolo logo + app icon rebrand:
+    - New CSS-rendered "Zolo" wordmark in header with glitch/chromatic text effect
+    - "Self-host your privacy" tagline shown in header on desktop
+    - New app icon with Zolo branding (flat SVG, Umbrel compatible)
+    - Removed old Zcash circle icon from header and public assets
