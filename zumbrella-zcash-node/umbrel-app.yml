@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.16.0"
+version: "1.17.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,6 +108,9 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Seed Phrase Layout:
-    - Seed word grids now flow top-to-bottom in columns (1-6, 7-12, 13-18, 19-24) matching standard backup card format
-    - Applies to both wallet creation and seed reveal in settings
+  Fix Browser Wallet:
+    - Replaced non-functional WebZjs WASM dependency with transparent-address-only wallet
+    - Wallet now derives t1 addresses client-side and fetches balance/transactions from zebrad
+    - Create, unlock, lock, and receive flows all work without errors
+    - Send tab replaced with informational panel linking to Connect page for full wallet apps
+    - Removed WASM webpack config and unused gRPC proxy route
