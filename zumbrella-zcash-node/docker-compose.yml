@@ -65,17 +65,30 @@ services:
       default:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP
 
+  grpc_proxy:
+    image: envoyproxy/envoy:v1.31-latest@sha256:caa5b411be1633b90023592a34a7e010c933d6e60206c758f631485e53006865
+    restart: on-failure
+    depends_on:
+      - lightwalletd
+    volumes:
+      - ${APP_DATA_DIR}/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    networks:
+      default:
+        ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_GRPC_PROXY_IP
+
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.15.0@sha256:d19cfa68d3679fd29aa0b893932a8a9b5eee19a52e67c6a4141ac2ab457cfeed
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.16.0@sha256:1ffa55a75006dd6f95f4f04b1e4729947758389238b54d7ba18467a64ab445e5
     user: "1000:1000"
     restart: on-failure
     depends_on:
       - zebrad
+      - grpc_proxy
     environment:
       ZEBRAD_RPC_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}:8232"
       LIGHTWALLETD_ONION: "${APP_ZUMBRELLA_ZCASH_NODE_GRPC_HIDDEN_SERVICE}"
       LIGHTWALLETD_HOST: "${APP_ZUMBRELLA_ZCASH_NODE_LIGHTWALLETD_IP}"
       LIGHTWALLETD_PORT: "9067"
+      GRPC_PROXY_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_GRPC_PROXY_IP}:8080"
       TOR_HOST: "${APP_ZUMBRELLA_ZCASH_NODE_TOR_IP}"
       PORT: "3700"
       SETTINGS_FILE: "/data/settings/settings.json"

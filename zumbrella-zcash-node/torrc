@@ -1,3 +1,5 @@
+SocksPort 9050
+
 # Zcash Node Tor Hidden Services
 
 # RPC (JSON-RPC)

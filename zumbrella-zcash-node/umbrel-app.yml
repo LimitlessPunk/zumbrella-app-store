@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.12.0"
+version: "1.13.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,12 +108,8 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  SNES Pixel Theme — Match Reference Design:
-    - Fixed all 6 SNES default colors (dark navy bg, bright gold, blue cyan)
-    - Compact 1100px dashboard layout matching SNES reference design
-    - Flat header with logo left + nav-tab buttons right
-    - Inline pixel sync bar with 20 segments
-    - Stat cards in 4-column grid with reduced sparkline opacity
-    - Peer Network + Services side-by-side in 2-column layout
-    - Inventory-style recent blocks with gold pixel squares
-    - Inline star+name service status display
+  Fix Tor, Zcash Gold default theme, layout optimization:
+    - Fix Tor health check: added SocksPort 9050 so web UI can detect Tor is running
+    - Default theme changed from SNES to Zcash Gold (dark bg, gold/cyan accents)
+    - Dashboard layout: services now a compact horizontal bar, peer map gets full width
+    - Fixed TypeScript build errors in wallet module
