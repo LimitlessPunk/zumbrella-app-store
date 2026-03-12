@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
-  <rect width="1080" height="1080" rx="180" fill="#0f0f0f"/>
-  <rect x="16" y="16" width="1048" height="1048" rx="168" fill="none" stroke="#F4B728" stroke-width="3" opacity="0.4"/>
-  <text x="540" y="520" text-anchor="middle" dominant-baseline="central" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="340" fill="#F4B728" letter-spacing="24">ZOLO</text>
-  <text x="540" y="660" text-anchor="middle" dominant-baseline="central" font-family="'Courier New', monospace" font-size="60" fill="#71717a" letter-spacing="8">Self-host your privacy</text>
-</svg>
