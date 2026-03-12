@@ -20,6 +20,8 @@ rpcport=8232
 CONF
 
 # Generate envoy.yaml for gRPC-web proxy (regenerated on every start to pick up updates)
+# Docker creates a directory if the bind-mount target doesn't exist — remove it first
+[[ -d "${APP_DATA_DIR}/envoy.yaml" ]] && rmdir "${APP_DATA_DIR}/envoy.yaml" 2>/dev/null || true
 cat > "${APP_DATA_DIR}/envoy.yaml" <<'ENVOY'
 static_resources:
   listeners:
