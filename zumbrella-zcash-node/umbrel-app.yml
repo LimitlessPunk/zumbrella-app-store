@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.29.0"
+version: "1.30.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,6 +109,11 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Fix rescan "Invalid passphrase" false positive:
-    - Clamp birthday height to chain tip so date-based presets (1 Week, 1 Month, etc.) don't request blocks beyond the chain
-    - Separate passphrase decryption errors from API errors so real error messages are shown instead of "Invalid passphrase"
+  Fix wallet birthday height bug + broken transactions:
+    - Fix block interval from 75s to 90s in date-to-height calculation — was causing all date presets to overshoot, making wallet birthday too recent and missing transactions
+    - Add 1000-block safety margin to birthday height estimates
+    - Fix SQL column names (received_total→total_received, sent_total→total_spent) so transactions endpoint works
+    - Fix pool type reading (integer→string mapping) for correct pool identification
+    - Increase scanner stop timeout from 5s to 30s to prevent DB corruption on rewind/rescan
+    - Sort scan ranges by priority so important ranges are processed first
+    - Guard against underflow when scan range start >= end
