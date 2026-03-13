@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.21.0"
+version: "1.22.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,6 +108,7 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Dynamic Footer Version: Footer version is now loaded from the APP_VERSION environment
-  variable instead of being hardcoded, so it always stays in sync with the app release.
-  Also includes "IN SYNC" green indicator on the main progress bar when fully synced.
+  Switch to Blockchair explorer + clickable transaction links:
+    - Block links in Recent Blocks now open on blockchair.com/zcash
+    - Transaction IDs in wallet history are now clickable links to Blockchair
+    - Send success txid is now a clickable link to the transaction on Blockchair
