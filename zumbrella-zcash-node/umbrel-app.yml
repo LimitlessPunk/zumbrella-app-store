@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.26.0"
+version: "1.27.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,8 +109,7 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Wallet rescan & rewind:
-    - New "Rescan Wallet" panel in wallet settings to re-scan for missed shielded transactions
-    - Choose scan range: last week, month, 3 months, year, custom date, or full history
-    - Advanced "Rewind to height" option for precise block-level rollback (no passphrase needed)
-    - Full rescan deletes wallet DB and re-initializes from selected birthday height
+  Fix rescan errors + remove scanlines:
+    - Fix "unable to open database file" error during wallet rescan (leftover SQLite journal files)
+    - Fix wrong passphrase error not recognized during rescan ("aes/gcm: invalid ghash tag")
+    - Remove global scanline overlay from all pages, keep only on the ZOLO logo
