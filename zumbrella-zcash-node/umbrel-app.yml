@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.23.0"
+version: "1.24.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -92,6 +92,7 @@ widgets:
 backupIgnore:
   - "data/zebrad/**"
   - "data/lightwalletd/**"
+  - "data/wallet-sidecar/**"
 gallery:
   - https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/gallery/1.png
   - https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/gallery/2.png
@@ -108,7 +109,11 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Fix wallet issues — transactions, copy, logo navigation:
-    - Logo now navigates back to dashboard when clicked
-    - Clipboard copy works on HTTP (non-HTTPS) connections using execCommand fallback
-    - UX warnings on sapling and unified address tabs about shielded transaction visibility
+  Shielded balance and transaction scanning:
+    - Full shielded wallet support — scan sapling + orchard transactions via lightwalletd
+    - Balance breakdown by pool (transparent, sapling, orchard)
+    - Transaction pool badges (T/S/O) and memo display
+    - Scanning progress bar with block height indicator
+    - Default receive tab changed to unified addresses (privacy-first)
+    - Birthday height picker for imported wallets (scan range control)
+    - Wallet sidecar upgraded with zcash_client_backend scanning
