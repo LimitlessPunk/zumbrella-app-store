@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.25.0"
+version: "1.26.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,6 +109,8 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  UI polish:
-    - Peer Network stats (Inbound, Outbound, Countries, Tor) now display on a single row
-    - Buttons are no longer covered by the scanline overlay effect
+  Wallet rescan & rewind:
+    - New "Rescan Wallet" panel in wallet settings to re-scan for missed shielded transactions
+    - Choose scan range: last week, month, 3 months, year, custom date, or full history
+    - Advanced "Rewind to height" option for precise block-level rollback (no passphrase needed)
+    - Full rescan deletes wallet DB and re-initializes from selected birthday height
