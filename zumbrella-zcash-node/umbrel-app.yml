@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.20.0"
+version: "1.21.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -108,6 +108,6 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Sync Status Indicator: SyncBar now shows "IN SYNC" in green when the node is fully synced,
-  instead of always showing "SYNC_" with a blinking cursor. Percentage text also turns green
-  when synced.
+  Dynamic Footer Version: Footer version is now loaded from the APP_VERSION environment
+  variable instead of being hardcoded, so it always stays in sync with the app release.
+  Also includes "IN SYNC" green indicator on the main progress bar when fully synced.
