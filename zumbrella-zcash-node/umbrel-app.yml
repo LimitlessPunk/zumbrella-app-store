@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.27.0"
+version: "1.28.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,7 +109,7 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Fix rescan errors + remove scanlines:
-    - Fix "unable to open database file" error during wallet rescan (leftover SQLite journal files)
-    - Fix wrong passphrase error not recognized during rescan ("aes/gcm: invalid ghash tag")
-    - Remove global scanline overlay from all pages, keep only on the ZOLO logo
+  Fix wallet rescan permission error + race condition:
+    - Fix "unable to open database file" error caused by container running as UID 1000 on root-owned directory
+    - Fix race condition where rescan/rewind could delete DB files while scanner still has open connections
+    - Add startup check to fail fast with clear error if data directory is not writable
