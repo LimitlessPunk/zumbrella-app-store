@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.32.0"
+version: "1.33.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,5 +109,6 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Fix wallet API caching — wallet status, addresses, balance, transactions, and scan status
-  now return live data instead of stale cached responses from Next.js.
+  Fix wallet upgrade bug — automatically clean up incompatible wallet.db files from previous
+  versions that caused CommitmentTree errors. Seed phrase is preserved safely; only scan history
+  is reset.
