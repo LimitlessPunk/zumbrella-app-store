@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.31.0"
+version: "1.32.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,12 +109,5 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Server-side wallet — all key material now lives on your Umbrel node:
-    - Seed phrase encrypted at rest with age/scrypt (Zcash ecosystem standard)
-    - One wallet per installation instead of one per browser — access from any device
-    - Full shielded sending (Sapling + Orchard) with memo support via server-side Groth16 proving
-    - Passphrase required per send for security — seed never leaves the sidecar
-    - Auto-start scanner on boot when wallet exists
-    - Rate limiting on passphrase attempts (5 failures → 30s cooldown)
-    - Migration from old browser-based wallet on first visit
-    - Removed all client-side cryptography — browser is now a thin API client
+  Fix wallet API caching — wallet status, addresses, balance, transactions, and scan status
+  now return live data instead of stale cached responses from Next.js.
