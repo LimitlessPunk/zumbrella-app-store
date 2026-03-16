@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.34.0"
+version: "1.35.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,8 +109,8 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Simplified wallet setup, optional passphrase, and encrypted backup downloads.
-  Create or restore a wallet from seed phrase or .age backup file. Passphrase is
-  now optional — skip it for convenience or set one to encrypt your seed on disk.
-  Download encrypted .age backups from wallet settings. Removed legacy browser
-  wallet migration code.
+  Fix wallet lost on page refresh and add backup download in create flow.
+  Wallet status fetch now bypasses browser cache, preventing stale "no wallet"
+  responses after creation. Mount initialization retries up to 5 times to handle
+  sidecar startup delays. Encrypted wallet creation now offers an immediate
+  backup download before entering the wallet.
