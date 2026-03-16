@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.35.0"
+version: "1.36.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,8 +109,10 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Fix wallet lost on page refresh and add backup download in create flow.
-  Wallet status fetch now bypasses browser cache, preventing stale "no wallet"
-  responses after creation. Mount initialization retries up to 5 times to handle
-  sidecar startup delays. Encrypted wallet creation now offers an immediate
-  backup download before entering the wallet.
+  Wallet UX improvements: session persistence, nav bar balance, receive redesign,
+  fee label, and pending transaction styling. Encrypted wallets now stay unlocked
+  for 10 minutes across page navigations (auto-locks on idle). Nav bar shows
+  balance at a glance with a quick lock button. Receive page redesigned with
+  address type descriptions, larger QR, and privacy notes. Fee field now shows
+  ~0.0001 ZEC instead of cryptic "ZIP-317". Pending transactions are visually
+  distinct with gold highlight and pulsing indicator.
