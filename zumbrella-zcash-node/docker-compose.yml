@@ -75,7 +75,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_GRPC_PROXY_IP
 
   wallet_sidecar:
-    image: ghcr.io/limitlesspunk/wallet-sidecar:v2.8.0@sha256:78353a3051be018da6696a611bafada44cbfe6015bc03397930a6547835a42ad
+    image: ghcr.io/limitlesspunk/wallet-sidecar:v2.9.0@sha256:c465ec94ec9250869e18eb6c4ed62d7f1fbb70016f79e7c082df52a34122502f
     restart: on-failure
     depends_on:
       lightwalletd:
@@ -106,7 +106,7 @@ services:
       - grpc_proxy
       - wallet_sidecar
     environment:
-      APP_VERSION: "1.37.0"
+      APP_VERSION: "1.38.0"
       ZEBRAD_RPC_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}:8232"
       WALLET_SIDECAR_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_WALLET_SIDECAR_IP}:3001"
       LIGHTWALLETD_ONION: "${APP_ZUMBRELLA_ZCASH_NODE_GRPC_HIDDEN_SERVICE}"

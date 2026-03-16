@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.37.0"
+version: "1.38.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,9 +109,9 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Upgrade lightwalletd to official v0.4.18 with full Orchard (NU5) support.
-  Replaces community ARM64 image with official multi-arch build (ARM64+AMD64)
-  from zcash/lightwalletd. Fixes missing Orchard-only transactions in the wallet
-  — compact blocks now include Orchard actions so the wallet sidecar can detect
-  and scan them. After updating, use Settings > Rescan to rewind and pick up any
-  previously missed Orchard transactions.
+  Fix wallet rescan missing transactions. The "Last week" rescan preset
+  calculated a birthday height above the chain tip due to incorrect block
+  interval math, then clamped it to chain_tip-100 — scanning only ~2.5 hours
+  instead of a week. Now uses chain-tip-relative calculation (1152 blocks/day)
+  and only clamps when the birthday actually exceeds the chain tip. All rescan
+  presets (week, month, 3 months, year, full) now produce correct heights.
