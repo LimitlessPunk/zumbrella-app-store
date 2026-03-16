@@ -43,7 +43,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP
 
   lightwalletd:
-    image: ghcr.io/limitlesspunk/lightwalletd:v0.4.18@sha256:8f72d686a7350e629f8fcaeeeb0944cabd58e743c7b3d8c3472181da6ecc4492
+    image: ghcr.io/limitlesspunk/lightwalletd:v0.4.18@sha256:806a45ba0cd311ace657fcac628740152df33033839406409a4c3cdcfedf371f
     restart: on-failure
     depends_on:
       zebrad:
