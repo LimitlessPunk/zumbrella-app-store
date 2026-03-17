@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: zumbrella-zcash-node
 name: "Zolo"
 tagline: "Self-host your privacy"
-version: "1.42.0"
+version: "1.43.0"
 category: finance
 icon: https://raw.githubusercontent.com/LimitlessPunk/zumbrella-app-store/main/zumbrella-zcash-node/icon.png
 port: 3700
@@ -109,6 +109,6 @@ deterministicPassword: true
 torOnly: false
 installSize: 500000
 releaseNotes: >-
-  Enable inbound P2P connections: expose port 8233 to accept peers, auto-detect
-  public IP or set manually, UPnP port mapping (best-effort), port reachability
-  test via Tor, and new Inbound Connections panel in Settings.
+  Full-decimal ZEC amounts + fiat price display: all ZEC amounts now show full
+  8-decimal precision, live fiat equivalents (USD, EUR, GBP, CHF, JPY, CAD, AUD,
+  CNY, BTC) via CoinGecko with 60s cache, and currency selector in wallet settings.
