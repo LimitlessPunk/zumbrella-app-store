@@ -105,6 +105,65 @@ if [[ -f "${SETTINGS_FILE}" ]]; then
 
   SYNC_CONC=$(jq -r '.syncConcurrency // empty' "${SETTINGS_FILE}" 2>/dev/null)
   [[ -n "${SYNC_CONC}" ]] && export APP_ZUMBRELLA_ZCASH_NODE_SYNC_CONCURRENCY="${SYNC_CONC}"
+
+  # Inbound P2P connections
+  ENABLE_INBOUND=$(jq -r '.enableInbound // empty' "${SETTINGS_FILE}" 2>/dev/null)
+  EXTERNAL_ADDR=$(jq -r '.externalAddr // empty' "${SETTINGS_FILE}" 2>/dev/null)
+
+  if [[ "${ENABLE_INBOUND}" == "true" ]]; then
+    NETWORK_STATUS_DIR="${APP_DATA_DIR}/settings"
+    NETWORK_STATUS_FILE="${NETWORK_STATUS_DIR}/network-status.json"
+    DETECTED_IP=""
+    UPNP_SUCCESS="false"
+    UPNP_ERROR=""
+
+    # Determine external IP: use user-provided or auto-detect
+    if [[ -n "${EXTERNAL_ADDR}" ]]; then
+      DETECTED_IP="${EXTERNAL_ADDR}"
+    else
+      DETECTED_IP=$(curl -sf --max-time 10 "https://api.ipify.org" 2>/dev/null || true)
+      if [[ -z "${DETECTED_IP}" ]]; then
+        DETECTED_IP=$(curl -sf --max-time 10 "https://ifconfig.me" 2>/dev/null || true)
+      fi
+    fi
+
+    # Determine P2P port
+    INBOUND_PORT="${P2P_PORT:-8233}"
+
+    # Attempt UPnP port mapping (best-effort)
+    if command -v upnpc &>/dev/null && [[ -n "${DETECTED_IP}" ]]; then
+      # Get LAN IP for UPnP
+      LAN_IP=$(hostname -I 2>/dev/null | awk '{print $1}' || true)
+      if [[ -n "${LAN_IP}" ]]; then
+        if upnpc -e "Zolo P2P" -a "${LAN_IP}" "${INBOUND_PORT}" "${INBOUND_PORT}" TCP 86400 2>/dev/null; then
+          UPNP_SUCCESS="true"
+        else
+          UPNP_ERROR="UPnP port mapping failed — forward port ${INBOUND_PORT} manually on your router"
+        fi
+      else
+        UPNP_ERROR="Could not determine LAN IP for UPnP"
+      fi
+    elif [[ -n "${DETECTED_IP}" ]]; then
+      UPNP_ERROR="upnpc not available — forward port ${INBOUND_PORT} manually on your router"
+    fi
+
+    # Export external address for zebrad
+    if [[ -n "${DETECTED_IP}" ]]; then
+      export APP_ZUMBRELLA_ZCASH_NODE_EXTERNAL_ADDR="${DETECTED_IP}:${INBOUND_PORT}"
+    fi
+
+    # Write network status file for the web UI
+    mkdir -p "${NETWORK_STATUS_DIR}"
+    cat > "${NETWORK_STATUS_FILE}" <<NETSTATUS
+{
+  "detectedIp": "${DETECTED_IP}",
+  "upnpSuccess": ${UPNP_SUCCESS},
+  "upnpError": $(if [[ -n "${UPNP_ERROR}" ]]; then echo "\"${UPNP_ERROR}\""; else echo "null"; fi),
+  "lastUpdated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+}
+NETSTATUS
+    chown "${DESIRED_OWNER}" "${NETWORK_STATUS_FILE}" || true
+  fi
 fi
 
 # Fix file ownership for containers running as uid 1000
