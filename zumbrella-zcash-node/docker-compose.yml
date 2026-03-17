@@ -4,7 +4,7 @@ volumes:
     driver_opts:
       type: tmpfs
       device: tmpfs
-      o: size=50m
+      o: size=100m
 
 services:
   app_proxy:
@@ -17,9 +17,13 @@ services:
     image: zfnd/zebra:4.1.0@sha256:9e82f1029527183ec5bf691bd9b8eae61357bf439d33f3f7dfcb0dba5ea7d760
     restart: on-failure
     stop_grace_period: 2m
-    command: ["zebrad", "start"]
+    command:
+      - /bin/sh
+      - -c
+      - "trap 'kill 0' TERM; zebrad start 2>&1 | tee /shared-logs/zebrad.log & wait"
     volumes:
       - ${APP_DATA_DIR}/data/zebrad:/home/zebra/.cache/zebra
+      - logs:/shared-logs
     environment:
       ZEBRA_NETWORK__NETWORK: "Mainnet"
       ZEBRA_RPC__LISTEN_ADDR: "0.0.0.0:8232"
@@ -98,7 +102,7 @@ services:
         ipv4_address: $APP_ZUMBRELLA_ZCASH_NODE_WALLET_SIDECAR_IP
 
   web:
-    image: ghcr.io/limitlesspunk/zumbrella-web:v1.38.0@sha256:cba0d1ee4f5d8c0ca2e4f307dcef8c012f7812905470bbbebfb3f9a53473f993
+    image: ghcr.io/limitlesspunk/zumbrella-web:v1.39.0@sha256:4a084869f686d9ef2e9c155cc0bb5d631d08b48fef1dfecff8293d269a2ca852
     user: "1000:1000"
     restart: on-failure
     depends_on:
@@ -106,7 +110,7 @@ services:
       - grpc_proxy
       - wallet_sidecar
     environment:
-      APP_VERSION: "1.40.0"
+      APP_VERSION: "1.41.0"
       ZEBRAD_RPC_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_ZEBRAD_IP}:8232"
       WALLET_SIDECAR_URL: "http://${APP_ZUMBRELLA_ZCASH_NODE_WALLET_SIDECAR_IP}:3001"
       LIGHTWALLETD_ONION: "${APP_ZUMBRELLA_ZCASH_NODE_GRPC_HIDDEN_SERVICE}"
